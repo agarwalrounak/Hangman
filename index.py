@@ -27,6 +27,23 @@ except error.HTTPError:
 words_9 = [word for word in words if len(word) == 9 and word[0].islower() and "'" not in word]
 
 
+def print_hangman(chances):
+    if chances == 0:
+        print("   |\n   O\n  /|\\\n  / \\")
+    elif chances == 1:
+        print("   |\n   O\n  /|\\\n  /")
+    elif chances == 2:
+        print("   |\n   O\n  /|\\")
+    elif chances == 3:
+        print("   |\n   O\n  /|")
+    elif chances == 4:
+        print("   |\n   O\n   |")
+    elif chances == 5:
+        print("   |\n   O")
+    elif chances == 6:
+        print("   |")
+
+
 def start_game():
     guess_word = ''
     guessed_letters = []
@@ -67,6 +84,7 @@ def start_game():
             chances -= 1
             if chances:
                 print("Bad Guess!!")
+                print_hangman(chances)
                 print("Given Word:", guess_word)
                 print("Chances left:", chances)
                 print("Guessed letters:", guessed_letters)
@@ -74,8 +92,9 @@ def start_game():
                 let = input()
                 continue
             else:
-                print("The correct word was:", word)
                 print("Game Over!")
+                print_hangman(chances)
+                print("The correct word was:", word)
                 break
 
         list1 = list(guess_word)
@@ -87,6 +106,7 @@ def start_game():
         if '_' in guess_word:
             guessed_letters.append(let)
             print("Good Guess!!")
+            print_hangman(chances)
             print("Given Word:", guess_word)
             print("Chances left:", chances)
             print("Guessed letters:", guessed_letters)
