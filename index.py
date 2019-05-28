@@ -68,6 +68,11 @@ def start_game():
     let = input()
 
     while chances:
+        if len(let)!=1:
+            print("Enter a single letter.")
+            let = input()
+            continue
+
         if guess_word.count(let):
             print("The given character is already present in given word.")
             let = input()
